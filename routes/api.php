@@ -17,7 +17,13 @@ Route::post('/usuarios', [
     'uses' => 'UsuariosController@postUsuarios'
 ]);
 
+Route::post('/authuser', [
+    'uses' => 'UsuariosController@postAuthUser'
+]);
+
 
 Route::get('/usuarios', [
     'uses' => 'UsuariosController@getUsuarios'
 ]);
+
+

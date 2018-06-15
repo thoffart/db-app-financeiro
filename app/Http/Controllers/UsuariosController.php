@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class UsuariosController extends Controller
@@ -12,7 +13,7 @@ class UsuariosController extends Controller
      $usuarios = new Usuarios();
      $usuarios->nome = $request->input('nome');
      $usuarios->email = $request->input('email');
-     $usuarios->password = $request->input('password');
+     $usuarios->password = \Hash::make($request->input('password'));
      $usuarios->nascimento = $request->input('nascimento');
      $usuarios->boleto = $request->input('boleto');
      $usuarios->ccredito = $request->input('ccredito');
@@ -29,5 +30,19 @@ class UsuariosController extends Controller
             'usuarios' => $usuarios
         ];
         return response() -> json($response, 200);
+    }
+
+    public function postAuthUser(Request $request)
+    {
+        $login = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ];
+        if(Auth::attempt($login)) {
+            $user = Auth::user();
+            return response($user, 201);
+        }else{
+            return response ('Usuario e password não combinam',403);
+        }
     }
 }
