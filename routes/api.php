@@ -26,4 +26,8 @@ Route::get('/usuarios', [
     'uses' => 'UsuariosController@getUsuarios'
 ]);
 
+Route::get('/categorias/{cat}', [
+    'uses' => 'CategoriaController@getCategorias'
+]);
+
 

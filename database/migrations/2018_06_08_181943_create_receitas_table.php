@@ -15,7 +15,7 @@ class CreateReceitasTable extends Migration
     {
         Schema::create('receitas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_email');
+            $table->string('email');
             $table->float('valor', 10, 2);
             $table->text('descricao')->nullable();
             $table->timestamps();

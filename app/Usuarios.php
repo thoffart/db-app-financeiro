@@ -17,6 +17,14 @@ class Usuarios extends Authenticatable
     protected $primaryKey = 'email';
 
     public function receita() {
-        return $this->hasOne('App\Receita', 'user_email');
+        return $this->hasMany('App\Receita', 'email');
     }
+    public function gasto() {
+        return $this->hasMany('App\Gasto', 'email');
+    }
+
+    public function Lista() {
+        return $this->hasMany('App\Lista', 'email');
+    }
+
 }
