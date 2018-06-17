@@ -10,11 +10,15 @@ use \App\Receita as Receita;
 
 class Usuarios extends Authenticatable
 {
+    protected $primaryKey  = 'email';
+
     public $incrementing = false;
 
     protected $keyType = 'string';
 
-    protected $primaryKey = 'email';
+    
+ 
+    //protected $table = 'customusers';
 
     public function receita() {
         return $this->hasMany('App\Receita', 'email');
@@ -27,4 +31,18 @@ class Usuarios extends Authenticatable
         return $this->hasMany('App\Lista', 'email');
     }
 
+   /*  protected $fillable = [
+        'nome','email', 'password', 'nascimento', 'ccredito'. 'cdebito', 'boleto'
+    ]; */
+
+    /* protected $hidden = [
+        'password', 'remember_token',
+    ];
+ 
+ 
+    public function getAuthPassword()
+    {
+      return $this->password;
+    }
+ */
 }

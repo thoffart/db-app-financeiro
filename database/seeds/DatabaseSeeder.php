@@ -51,7 +51,8 @@ class DatabaseSeeder extends Seeder
                 'email' => $user_email,
                 'valor' => (rand(1, 4000)),
                 'descricao' => str_random(10),
-                'catid' => (rand(1, 11))
+                'catid' => (rand(1, 11)),
+                'pagamento' => 'cc'
             ]);    
         }
         

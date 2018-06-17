@@ -19,6 +19,7 @@ class CreateGastosTable extends Migration
             $table->string('descricao')->nullable();
             $table->float('valor');
             $table->integer('catid');
+            $table->string('pagamento');
             $table->timestamps();
         });
     }

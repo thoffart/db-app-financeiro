@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Session;
 
 class UsuariosController extends Controller
 {
@@ -44,5 +44,21 @@ class UsuariosController extends Controller
         }else{
             return response ('Usuario e password não combinam',403);
         }
+    }
+    public function getAuthUser() {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $response = [
+            'usuario' => $user
+        ];
+        return response() -> json($response, 200);
+        } else {
+            return response ('Usuario enao autenticado',403);
+        }
+       /*  $user = Session('user');
+        $response = [
+            'usuario' => $user
+        ];
+        return response() -> json($response, 200); */
     }
 }

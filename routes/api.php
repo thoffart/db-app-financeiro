@@ -21,6 +21,9 @@ Route::post('/authuser', [
     'uses' => 'UsuariosController@postAuthUser'
 ]);
 
+Route::get('/authuser', [
+    'uses' => 'UsuariosController@getAuthUser'
+]);
 
 Route::get('/usuarios', [
     'uses' => 'UsuariosController@getUsuarios'
