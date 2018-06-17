@@ -33,4 +33,6 @@ Route::get('/categorias/{cat}', [
     'uses' => 'CategoriaController@getCategorias'
 ]);
 
+Route::get('/listas/{lista}', 'ListaController@getListas');
+
 
