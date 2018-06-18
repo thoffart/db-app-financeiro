@@ -28,6 +28,8 @@ Route::post('/usuarios', [ //Registrar
     'uses' => 'UsuariosController@postUsuarios'
 ]);
 
+Route::patch('/usuarios/{id}', 'UsuariosController@patchUsuarios');
+
 Route::post('/authuser', [ //Login
     'uses' => 'UsuariosController@postAuthUser'
 ]);
@@ -43,6 +45,12 @@ Route::get('/usuarios', [
 Route::get('/categorias/{cat}', [
     'uses' => 'CategoriaController@getCategorias'
 ]);
+
+Route::get('/listas/{lista}', 'ListaController@getListas');
+
+Route::post('/listas','ListaController@postListas');
+
+Route::delete('listas/{lista}', 'ListaController@deleteListas');
 
 Route::post('/gasto', [
     'uses' => 'GastoController@postGasto'
