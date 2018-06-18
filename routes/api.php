@@ -35,4 +35,6 @@ Route::get('/categorias/{cat}', [
 
 Route::get('/listas/{lista}', 'ListaController@getListas');
 
+Route::post('/listas','ListaController@postListas');
+
 

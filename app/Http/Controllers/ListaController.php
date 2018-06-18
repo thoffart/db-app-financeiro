@@ -24,6 +24,15 @@ class ListaController extends Controller
 
     }
 
+    public function postListas(Request $request) {
+        $lista = new Lista;
+        $lista->descricao = $request->input('descricao');
+        $lista->email = $request->input('email');
+        $lista->save();
+        
+        return response()->json(['listas' => $lista], 201);    
+    }
+
     public function finalizar(Lista $lista) {
         
     }
