@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Lista;
 
+use App\Usuarios;
+
 class ListaController extends Controller
 {
     public function getListas($value) {
@@ -13,7 +15,7 @@ class ListaController extends Controller
         if ($value == 'all' ) {
             $listas = Lista::all();
         } else {
-            $listas = Lista::where('descricao','like', '%'.$value.'%')->get();
+            $listas = Usuarios::find($value)->lista;
         }
 
         $response = [

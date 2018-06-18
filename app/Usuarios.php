@@ -27,7 +27,7 @@ class Usuarios extends Authenticatable
         return $this->hasMany('App\Gasto', 'email');
     }
 
-    public function Lista() {
+    public function lista() {
         return $this->hasMany('App\Lista', 'email');
     }
 
