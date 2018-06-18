@@ -33,4 +33,8 @@ Route::get('/categorias/{cat}', [
     'uses' => 'CategoriaController@getCategorias'
 ]);
 
+Route::post('/gasto', [
+    'uses' => 'GastoController@postGasto'
+]);
+
 
