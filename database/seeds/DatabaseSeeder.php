@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Gasto;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,7 +39,6 @@ class DatabaseSeeder extends Seeder
             'ccredito' => true,
             'cdebito' => true,
             'boleto' =>true
-
         ]);
 
         foreach($cats as $categ ) {
@@ -47,13 +48,18 @@ class DatabaseSeeder extends Seeder
         }
 
         for ($i = 1; $i <= 10; $i++) {
-            DB::table('gastos')->insert([
+            $int = rand(1262055681, 1529283467);
+            $date = date("Y-m-d H:i:s",$int);
+
+            $gasto = new Gasto([
                 'email' => $user_email,
-                'valor' => (rand(1, 4000)),
+                'valor' => (rand(1,4000)),
                 'descricao' => str_random(10),
-                'catid' => (rand(1, 11)),
-                'pagamento' => 'cc'
-            ]);    
+                'catid' => (rand(1,11)),
+                'pagamento' => 'cc',
+                'created_at' => $date
+            ]);
+            $gasto->save();
         }
         
         for ($i = 1; $i <= 10; $i++) {

@@ -12,12 +12,23 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::delete('/gastos/{id}', [
+    'uses' => 'GastoController@deleteGasto'
+]);
 
-Route::post('/usuarios', [
+Route::get('/receitas/{email}', [
+    'uses' => 'ReceitaController@getReceitas'
+]);
+
+Route::get('/gastos/{email}', [
+    'uses' => 'GastoController@getGastos'
+]);
+
+Route::post('/usuarios', [ //Registrar
     'uses' => 'UsuariosController@postUsuarios'
 ]);
 
-Route::post('/authuser', [
+Route::post('/authuser', [ //Login
     'uses' => 'UsuariosController@postAuthUser'
 ]);
 
@@ -40,5 +51,3 @@ Route::post('/gasto', [
 Route::post('/receita', [
     'uses' => 'ReceitaController@postReceita'
 ]);
-
-
