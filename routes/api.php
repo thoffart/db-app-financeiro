@@ -17,6 +17,8 @@ Route::post('/usuarios', [
     'uses' => 'UsuariosController@postUsuarios'
 ]);
 
+Route::patch('/usuarios/{id}', 'UsuariosController@patchUsuarios');
+
 Route::post('/authuser', [
     'uses' => 'UsuariosController@postAuthUser'
 ]);

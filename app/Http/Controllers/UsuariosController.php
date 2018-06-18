@@ -22,6 +22,20 @@ class UsuariosController extends Controller
      return response()->json(['usuarios' => $usuarios], 201);    
     }
 
+    public function patchUsuarios(Request $request, $id)
+    {
+        $usuarios = Usuarios::find($id);
+        $usuarios->nome = $request->input('nome');
+        $usuarios->email = $request->input('email');
+        $usuarios->password = \Hash::make($request->input('password'));
+        $usuarios->nascimento = $request->input('nascimento');
+        $usuarios->boleto = $request->input('boleto');
+        $usuarios->ccredito = $request->input('ccredito');
+        $usuarios->cdebito = $request->input('cdebito');
+        $usuarios->save();
+        return response()->json(['usuarios' => $usuarios], 201);    
+    }
+
 
     public function getUsuarios()
     {
@@ -45,6 +59,7 @@ class UsuariosController extends Controller
             return response ('Usuario e password não combinam',403);
         }
     }
+
     public function getAuthUser() {
         if (Auth::check()) {
             $user = Auth::user();
