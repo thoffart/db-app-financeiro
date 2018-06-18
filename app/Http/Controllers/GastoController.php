@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Gasto;
 use Illuminate\Http\Request;
-use App\Gasto;
 
 class GastoController extends Controller
 {
