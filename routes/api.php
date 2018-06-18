@@ -37,4 +37,4 @@ Route::get('/listas/{lista}', 'ListaController@getListas');
 
 Route::post('/listas','ListaController@postListas');
 
-
+Route::delete('listas/{lista}', 'ListaController@deleteListas');

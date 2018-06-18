@@ -25,15 +25,23 @@ class ListaController extends Controller
     }
 
     public function postListas(Request $request) {
-        $lista = new Lista;
+        if ($request->input('id')) {
+            $lista = Lista::find($request->input('id'));
+        } else {
+            $lista = new Lista;
+        }
         $lista->descricao = $request->input('descricao');
         $lista->email = $request->input('email');
         $lista->save();
-        
+
         return response()->json(['listas' => $lista], 201);    
     }
 
-    public function finalizar(Lista $lista) {
-        
+    public function deleteListas($id) {
+        $lista = Lista::find($id);
+        $lista->delete();
+
+        return response()->json(['listas' => $lista], 200);
     }
+
 }
