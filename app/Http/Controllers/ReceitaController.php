@@ -26,4 +26,22 @@ class ReceitaController extends Controller
         return response()->json(['receita' => $receita], 201); 
 
     }
+
+    public function getReceitaFilter($email, $filter)
+    {
+        if($filter == "data"){
+            $receitas = Receita::where('email', $email)->orderBy('created_at','desc')->get();
+        } elseif ($filter == "valor"){
+            $receitas = Receita::where('email', $email)->orderBy('valor','desc')->get();
+        }
+        $response = [
+            'receitas' => $receitas
+        ];
+        return response() -> json($response, 200);
+    }
+
+    public function deletarReceitas($id){
+        Receita::find($id)->delete();
+        return 204;
+    }
 }

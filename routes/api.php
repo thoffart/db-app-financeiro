@@ -59,3 +59,16 @@ Route::post('/gasto', [
 Route::post('/receita', [
     'uses' => 'ReceitaController@postReceita'
 ]);
+
+Route::delete('/receitas/{id}', [
+    'uses' => 'ReceitaController@deletarReceitas'
+]);
+
+Route::get('/receitas/{email}/{filter}', [
+    'uses' => 'ReceitaController@getReceitaFilter'
+]);
+
+Route::get('/gastoss/{email}/{filter}', [
+    'uses' => 'GastoController@getGastosFilter'
+]);
+
