@@ -36,6 +36,16 @@ class GastoController extends Controller
 
     }
 
+    public function updateGasto(Request $request){
+        $id = $request->input('id');
+        $gasto = Gasto::where('id', $id)->update([
+            'descricao' => $request->input('descricao'),
+            'valor' => $request->input('valor'),
+            'pagamento' => $request->input('pagamento')
+        ]);
+        return response()->json(200); 
+    }
+
     public function getGastosFilter($email, $filter)
     {   
         if($filter == "data"){

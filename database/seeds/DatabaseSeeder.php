@@ -63,10 +63,14 @@ class DatabaseSeeder extends Seeder
         }
         
         for ($i = 1; $i <= 10; $i++) {
+            $rint = rand(1262055681, 1529283467);
+            $rdate = date("Y-m-d H:i:s", $rint);
+
             DB::table('receitas')->insert([
                 'email' => $user_email,
                 'valor' => (rand(1, 4000)),
-                'descricao' => str_random(10)
+                'descricao' => str_random(10),
+                'created_at' => $rdate
             ]); 
         }
 
