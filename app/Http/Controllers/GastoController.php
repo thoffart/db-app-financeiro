@@ -45,4 +45,24 @@ class GastoController extends Controller
         ]);
         return response()->json(200); 
     }
+
+    public function getGastosFilter($email, $filter)
+    {   
+        if($filter == "data"){
+            $gastos = Gasto::where('email', $email)->orderBy('created_at','desc')->get();
+        } elseif($filter == "valor") {
+            $gastos = Gasto::where('email', $email)->orderBy('valor','desc')->get();
+        } elseif($filter == "categoria"){
+            $gastos = Gasto::where('email', $email)->orderBy('catid','asc')->get();
+        } elseif($filter == "pagamento"){
+            $gastos = Gasto::where('email', $email)->orderBy('pagamento','asc')->get();
+        }
+        foreach($gastos as $gasto){
+            $gasto->categoria->nome;
+        }
+        $response = [
+            'gastos' => $gastos
+        ];
+        return response() -> json($response, 200);
+    }
 }
