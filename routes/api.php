@@ -67,3 +67,8 @@ Route::delete('/receitas/{id}', [
 Route::get('/receitas/{email}/{filter}', [
     'uses' => 'ReceitaController@getReceitaFilter'
 ]);
+
+Route::get('/gastoss/{email}/{filter}', [
+    'uses' => 'GastoController@getGastosFilter'
+]);
+
