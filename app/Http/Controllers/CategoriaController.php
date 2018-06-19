@@ -21,4 +21,12 @@ class CategoriaController extends Controller
         ];
         return response() -> json($response, 200);
     }
+
+    
+    public function getCategoriasLista() {
+        $categorias = Categoria::all();
+        $response = [
+            'categorias' => $categorias
+        ];
+        return response() -> json($response, 200);    }
 }
