@@ -16,13 +16,19 @@ Route::delete('/gastos/{id}', [
     'uses' => 'GastoController@deleteGasto'
 ]);
 
-Route::get('/receitas/{email}', [
-    'uses' => 'ReceitaController@getReceitas'
-]);
-
 Route::get('/gastos/{email}', [
     'uses' => 'GastoController@getGastos'
 ]);
+
+Route::post('/gasto', [
+    'uses' => 'GastoController@postGasto'
+]);
+
+Route::put('/gastos', [
+    'uses' => 'GastoController@updateGasto'
+]);
+
+
 
 Route::post('/usuarios', [ //Registrar
     'uses' => 'UsuariosController@postUsuarios'
@@ -42,9 +48,13 @@ Route::get('/usuarios', [
     'uses' => 'UsuariosController@getUsuarios'
 ]);
 
+
+
 Route::get('/categorias/{cat}', [
     'uses' => 'CategoriaController@getCategorias'
 ]);
+
+
 
 Route::get('/listas/{lista}', 'ListaController@getListas');
 
@@ -52,10 +62,16 @@ Route::post('/listas','ListaController@postListas');
 
 Route::delete('listas/{lista}', 'ListaController@deleteListas');
 
-Route::post('/gasto', [
-    'uses' => 'GastoController@postGasto'
-]);
+
 
 Route::post('/receita', [
     'uses' => 'ReceitaController@postReceita'
 ]);
+
+Route::get('/receitas/{email}', [
+    'uses' => 'ReceitaController@getReceitas'
+]);
+
+Route::delete('/receitas/{id}', 'ReceitaController@deleteReceita');
+
+Route::put('/receitas', 'ReceitaController@updateReceita');

@@ -10,11 +10,16 @@ class ReceitaController extends Controller
 
     public function getReceitas($email)
     {
-        $receita = Receita::select('valor')->where('email', $email)->get();
+        $receita = Receita::where('email', $email)->orderBy('created_at','desc')->get();
         $response = [
             'receitas' => $receita
         ];
         return response() -> json($response, 200);
+    }
+
+    public function deleteReceita($id){
+        Receita::find($id)->delete();
+        return 204;
     }
   
     public function postReceita(Request $request ){
@@ -25,5 +30,14 @@ class ReceitaController extends Controller
         $receita->save();
         return response()->json(['receita' => $receita], 201); 
 
+    }
+
+    public function updateReceita(Request $request){
+        $id = $request->input('id');
+        $receita = Receita::where('id', $id)->update([
+            'descricao' => $request->input('descricao'),
+            'valor' => $request->input('valor')
+        ]);
+        return response()->json(200); 
     }
 }
