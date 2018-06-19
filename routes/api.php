@@ -87,3 +87,8 @@ Route::get('/receitas/{email}/{filter}', [
 Route::get('/gastoss/{email}/{filter}', [
     'uses' => 'GastoController@getGastosFilter'
 ]);
+
+
+Route::get('/categoriass/', [
+    'uses' => 'CategoriaController@getCategoriasLista'
+]);
