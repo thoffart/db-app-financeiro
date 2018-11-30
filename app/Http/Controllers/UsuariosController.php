@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
 {
@@ -47,28 +48,30 @@ class UsuariosController extends Controller
 
     public function postAuthUser(Request $request)
     {
-        $login = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
-        ];
-        if(Auth::attempt($login)) {
-            $user = Auth::user();
-            return response($user, 201);
-        }else{
-            return response ('Usuario e password não combinam',403);
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $user = DB::Select("Select * FROM usuarios WHERE (email = '{$email}' and password = '{$password}')");
+        if ($user) {
+            $response = [
+                'usuario' => $user
+            ];
+            return response() -> json($response, 201);
         }
+        else
+            return response ('Usuario e password não combinam',403);
     }
 
-    public function getAuthUser() {
-        if (Auth::check()) {
-            $user = Auth::user();
-            $response = [
-            'usuario' => $user
-        ];
-        return response() -> json($response, 200);
-        } else {
-            return response ('Usuario enao autenticado',403);
-        }
+    public function getAuthUser(Request $request) {
+        // if (Auth::check()) {
+        //     $user = Auth::user();
+        //     $response = [
+        //     'usuario' => $user
+        // ];
+        // return response() -> json($response, 200);
+        // } else {
+        //     return response ('Usuario enao autenticado',403);
+        // }
        /*  $user = Session('user');
         $response = [
             'usuario' => $user
