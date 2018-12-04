@@ -50,8 +50,8 @@ class UsuariosController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-
-        $user = DB::Select("Select * FROM usuarios WHERE (email = '{$email}' and password = '{$password}')");
+        $user = Usuarios::where("email", $email)->get();
+       /*  $user = DB::Select("Select * FROM usuarios WHERE (email = '{$email}' and password = '{$password}')"); */
         if ($user) {
             $response = [
                 'usuario' => $user

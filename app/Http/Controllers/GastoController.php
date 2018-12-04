@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Gasto;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GastoController extends Controller
 {
 
     public function getGastos($email)
     {
-        $gastos = Gasto::where('email', $email)->orderBy('created_at','desc')->get();
+        $gastos = DB::SELECT(DB::raw("SELECT usuarios.gastos FROM usuarios WHERE usuarios.email = '{$email}'"));
+        Log::debug($gastos);
         foreach($gastos as $gasto){
             $gasto->categoria->nome;
         }

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Receita;
+use Illuminate\Support\Facades\DB;
 
 class ReceitaController extends Controller
 {
 
     public function getReceitas($email)
     {
-        $receita = Receita::where('email', $email)->orderBy('created_at','desc')->get();
+        $receita = DB::SELECT("SELECT usuarios.receita FROM usuarios WHERE usuarios.email = '{$email}'");
         $response = [
             'receitas' => $receita
         ];
